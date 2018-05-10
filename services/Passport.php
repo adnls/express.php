@@ -13,6 +13,8 @@ class Passport {
         $this->router = $router;
     }
 
+    /*!!!!!!!*/
+    //pb requete en base à chaque get user => c php vaut mieux les mettre dans session
     /*créer classe strategy*/
     private function serialize($id){
         return $_SESSION["passport"] = $id; // = la corresponance en réalité avec login mot de passe
@@ -30,7 +32,10 @@ class Passport {
     }
 
     public function getUser(){
-        return $this->deserialize();
+        if ($this->isAuthenticated() && isset($_SESSION["passport"])) {
+            return $this->deserialize();
+        }
+        return FALSE;
     }
 
     public function authorize(){
@@ -43,6 +48,7 @@ class Passport {
         throw new PassportException("auth failed");
     }
 
+    //a voir
     public function authenticate(){
         var_dump($_POST);
         //voir en base de données si il y a correspondance
@@ -53,23 +59,23 @@ class Passport {
             //c'est tout le delire de passport
             $this->serialize(1); //on met la pk de l'user en db dans les var de session pour pouvoir les retrouver facilement
             //var_dump($this->router->getRefferer());
-            return $this->router->redirect($this->router->getRefferer());
+            return $this->router->redirect($this->router->getReferer());
         }
 
         throw new PassportException("tried to login but failed");
     }
     
-    public function isAuthenticated(){
+    private function isAuthenticated(){
 
         $session_exists = isset($_SESSION);
         $var_exists = isset($_SESSION["is_authenticated"]);
 
-        if ($var_exists && $session_exists){
-            echo "Auth ok<br/>";
-            return $_SESSION["is_authenticated"];
+        if ($var_exists && $session_exists && $_SESSION["is_authenticated"]){
+            //echo "Auth ok<br/>";
+            return TRUE;
         }
 
-        echo "Not authenticated<br/>";
+        //echo "Not authenticated<br/>";
         return FALSE;
     }
     

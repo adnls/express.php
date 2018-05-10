@@ -1,6 +1,6 @@
 <?php 
-
-class LoginPostController {
+include_once('Controller.php');
+class LoginPostController extends Controller  {
    
     private $passport;
 

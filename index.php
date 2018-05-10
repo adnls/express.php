@@ -38,16 +38,19 @@ try {
         $controller->render();
     });
 
-} catch (PassportException $e) { //si il y aun pb au niveau du router
+} catch (PassportException $e) { 
+    //si il a un pb ac l'auth
     $router->redirect('/auth/login');
 
-} catch (RouterException $e) { //si il y a un pb avec l'auth
+} catch (RouterException $e) { 
+    //si il y a un pb avec l'a route
     $router->force404(function(){
         $controller = new NotFoundController();    
         $controller->render();
     });
 
-} catch (PDOException $e) { //si il y a un pb avec l'auth
+} catch (PDOException $e) { 
+    //si il y a un pb avec la bdd
     $router->force404(function(){
         $controller = new NotFoundController();    
         $controller->render();

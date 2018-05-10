@@ -5,5 +5,3 @@ RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule !^(.css|.js|.png|.jpe?g|.gif)$ - [L]
 
 RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
-
-ErrorDocument 404 /error404

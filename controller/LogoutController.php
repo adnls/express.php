@@ -1,6 +1,6 @@
 <?php 
-
-class LogoutController {
+include_once('Controller.php');
+class LogoutController extends Controller {
    
     private $passport;
 

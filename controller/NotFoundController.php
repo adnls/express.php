@@ -1,6 +1,7 @@
 <?php 
+include_once('Controller.php');
 
-class NotFoundController {
+class NotFoundController extends Controller {
 
     public function render(){
         $title = '404';

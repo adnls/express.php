@@ -64,7 +64,7 @@ class Router {
             $_SESSION["router_history"][]=$path;
         }
 
-        public function getRefferer(){
+        public function getReferer(){
 
             //var_dump($_SESSION["router_history"][count($_SESSION["router_history"])-1]);
             for ($i = count($_SESSION["router_history"])-1; $i>=0; $i--){

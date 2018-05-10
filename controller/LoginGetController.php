@@ -1,6 +1,6 @@
 <?php 
-
-class LoginGetController {
+include_once('Controller.php');
+class LoginGetController extends Controller {
 
     private $router;
     
@@ -13,14 +13,14 @@ class LoginGetController {
         $title = 'Login';
     
         $content = 
-            '<h1>Please Login</h1>
+            '<h1>Login</h1>
             <form action="/work/auth/login" method="post">
             Login: <input type="text" name="name"><br>
             Password: <input type="password" name="password"><br>
             <input type="submit">
             </form><br/>';
         
-        $from= $this->router->getRefferer();
+        $from= $this->router->getReferer();
 
         if ($from !== "" && $from !== null && $from !== '/home') $content = "<h3>you cant access : $from</h3>".$content;
         return include('view/template.php');

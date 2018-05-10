@@ -1,6 +1,10 @@
 <?php 
 
-class ParamController {
+include_once('Controller.php');
+include_once('view/components/Header.php');
+include_once('view/components/Menu.php');
+
+class ParamController extends Controller {
     
     private $passport;
 
@@ -17,27 +21,24 @@ class ParamController {
 
         //c'est un peu chelou tt ça mais c'est pour montrer les différentes possibilités avec param
         
-        if ($id === null){
+        /*if ($id === null){
             if (isset($_GET['id'])){
                 $id = $_GET['id'];
             } else { //on peut même envoyer une page générale si on veut
                 //la j'ai mis une erreur
                 throw new NotFoundException('404 Not found!');       
             }
-        }
+        }*/
 
-        
-        echo "verifying<br/>";
+        //si ça fail ça redirect et ça lance pas la suite
         $this->passport->authorize(); //on check si auth ok sur la session    
+
+        $header = (new Header($this->passport->getUser()))->build();
+        $menu = (new Menu())->build();
         
         $title = 'Param | '.$id;
+        $content = $header.$menu."<h1>$id</h1>";
 
-        $content =
-        '<form action="/work/auth/logout" method="post">
-        <input type="submit" value="Logout">
-        </form>
-        <a href="/work/home">Home</a><br/>
-        <a href="/work/param/random">Param</a>'."<h1>$id</h1>";
         return include('view/template.php');
     }
 }

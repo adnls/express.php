@@ -14,15 +14,15 @@ class LoginGetController {
     
         $content = 
             '<h1>Please Login</h1>
-            <form action="/work/login" method="post">
+            <form action="/work/auth/login" method="post">
             Login: <input type="text" name="name"><br>
             Password: <input type="password" name="password"><br>
             <input type="submit">
             </form><br/>';
         
-        $history = $this->router->getHistory();
-        $from = $history[count($history)-1];
-        if ($from !== '/home' && $from !== '/login') $content = "<h3>you cant access : $from</h3>".$content;
+        $from= $this->router->getRefferer();
+
+        if ($from !== "" && $from !== null && $from !== '/home') $content = "<h3>you cant access : $from</h3>".$content;
         return include('view/template.php');
     }
 }

@@ -1,24 +1,19 @@
 <?php
 
-class PassportException extends Exception {}
-
 class Passport {
     
-    private $sessionStore;
+    //private $sessionStore;
     private $db;
     private $router;
 
-    public function __construct($sessionStore, $db, $router){
-        $this->sessionStore = $sessionStore;
+    public function __construct($db, $router){
+        //$this->sessionStore = $sessionStore;7
+        if (!isset($_SESSION)) session_start();
         $this->db = $db;
         $this->router = $router;
     }
 
-    public function initialize(){
-        $this->sessionStore->connect();
-        //si on veut un connection persistante
-    }
-
+    /*créer classe strategy*/
     private function serialize($id){
         return $_SESSION["passport"] = $id; // = la corresponance en réalité avec login mot de passe
     }
@@ -38,13 +33,13 @@ class Passport {
         return $this->deserialize();
     }
 
-    public function verify(){
+    public function authorize(){
         
         if ($this->isAuthenticated()) {
-            echo "Connection ok";
+            
             return;
         }; 
-
+        
         throw new PassportException("auth failed");
     }
 
@@ -57,27 +52,30 @@ class Passport {
             //mettre la clé de la table users dans les sessions => serialize
             //c'est tout le delire de passport
             $this->serialize(1); //on met la pk de l'user en db dans les var de session pour pouvoir les retrouver facilement
-
-            return $this->router->redirect($this->router->getRedirectLocation());
+            //var_dump($this->router->getRefferer());
+            return $this->router->redirect($this->router->getRefferer());
         }
 
         throw new PassportException("tried to login but failed");
     }
     
-    private function isAuthenticated(){
+    public function isAuthenticated(){
 
         $session_exists = isset($_SESSION);
         $var_exists = isset($_SESSION["is_authenticated"]);
 
-        if ($var_exists && $session_exists)
+        if ($var_exists && $session_exists){
+            echo "Auth ok<br/>";
             return $_SESSION["is_authenticated"];
+        }
 
+        echo "Not authenticated<br/>";
         return FALSE;
     }
     
     public function logout(){
-        $_SESSION["is_authenticated"] = FALSE;
-        return $this->router->redirect('/login');
+        if (isset($_SESSION)) session_destroy();
+        return $this->router->redirect('/home');
     }
 }
 

@@ -2,8 +2,6 @@
 
 require('Route.php');
 
-class RouterException extends Exception {}
-    
 class Router {
     
         private $url; // Contiendra l'URL sur laquelle on souhaite se rendre
@@ -11,6 +9,10 @@ class Router {
 
         public function __construct($url){
             $this->url = $url;
+        }
+
+        public function use($callable){
+            return call_user_func($callable);
         }
 
         public function get($path, $callable){
@@ -25,7 +27,7 @@ class Router {
             return $route; // On retourne la route pour "enchainer" les méthodes
         }
     
-        public function run(){
+        public function listen(){
             if(!isset($this->routes[$_SERVER['REQUEST_METHOD']])){
                 throw new RouterException('REQUEST_METHOD does not exist');
             }
@@ -37,10 +39,10 @@ class Router {
                 }
             }
 
-            throw new RouterException('Not Found');
+            throw new NotFoundException('Not Found');
         }
 
-        public function redirect($to){
+        public function redirect($to = '/home'){
             header("Location: http://localhost/work$to");
             die();
         }
@@ -56,19 +58,22 @@ class Router {
             call_user_func($callable);
             die();
         }
+        
+        /*peut-être faire une classe History*/
         private function updateHistory($path){
             $_SESSION["router_history"][]=$path;
         }
 
-        public function getRedirectLocation(){
+        public function getRefferer(){
 
             //var_dump($_SESSION["router_history"][count($_SESSION["router_history"])-1]);
-
             for ($i = count($_SESSION["router_history"])-1; $i>=0; $i--){
-                if ($_SESSION["router_history"][$i] !== '/login' && $_SESSION["router_history"][$i] !== '/logout')
+                if ($_SESSION["router_history"][$i] !== '/auth/login' && $_SESSION["router_history"][$i] !== '/auth/logout')
                 return $_SESSION["router_history"][$i];
-            }          
+            }
+            return '/home';
         }
+
         public function getHistory(){
             return $_SESSION["router_history"];
         }

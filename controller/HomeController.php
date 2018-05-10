@@ -17,19 +17,31 @@ class HomeController {
         //grâce à l'injection de dépendence
 
         echo "verifying<br/>";
-        $this->passport->verify(); //on check si auth ok sur la session    
-        
-        //si on arrive là c'est que c'est passé sinon on a déjà redirigé vers login get
-        $user = $this->passport->getUser();
+        //$this->passport->authorize(); //on check si auth ok sur la session    
+        if ($this->passport->isAuthenticated()){
+            
+            $user = $this->passport->getUser();
+            $title = 'Home | '.$user['name'];
+            
+            $content = 
+            '<form action="/work/auth/logout" method="post">
+            <input type="submit" value="Logout">
+            </form>
+            <a href="/work/home">Home</a><br/>
+            <a href="/work/param/random">Param</a>'.'<h1>'.$user["email"].'</h1>'.'<h2>Auth level : '.$user["level"].'</h2>';        
+            return include('view/template.php');                
+        }
 
-        //et on prépare le template
-        $title = 'Home | '.$user['name'];
+        $title = 'Home | Visitor';
         
         $content = 
-        '<form action="/work/logout" method="post">
-        <input type="submit" value="Logout">
-        </form>'.'<h1>'.$user["email"].'</h1>'.'<h2>Auth level : '.$user["level"].'</h2>';        
+        '<a href="/work/auth/login"><button>Login</button></a><br/>
+        <a href="/work/home">Home</a><br/>
+        <a href="/work/param/random">Param</a><h1>Visitor Home</h1>';        
         return include('view/template.php');
+        //si on arrive là c'est que c'est passé sinon on a déjà redirigé vers login get
+        
+        //et on prépare le template
     }
 }
 

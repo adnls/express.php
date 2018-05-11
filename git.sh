@@ -1,3 +1,3 @@
-!#/bin/bash
+#!/bin/bash
 
-git add . && git commit -m "avascript started" && git push origin master
+git add . && git commit -m "git.sh" && git push origin master

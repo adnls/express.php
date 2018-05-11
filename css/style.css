@@ -1,16 +1,33 @@
-body {
-    background-color: grey;
+body { 
+    margin: 0;
+    background-color: 100%;
+    background-color: lightgrey;
 }
 
 h1 {
-    background-color: blue;
+    margin: 0;
     color: white;
 }
 
 header{
+    margin: 0;
+    height: 100px;
     background-color: red;
 }
 
-nav{
+nav {
+    position: fixed;
+    left: 0;
+    top: 100px;
+    overflow-x: hidden; /* Disable horizontal scroll */    
+    z-index: 1;
     background-color: green;
+    width: 250px;
+    transition: 0.5s;
+}
+
+.main {
+    margin-left: 250px;
+    transition: 0.5s;
+    background-color: orange;
 }

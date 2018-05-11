@@ -37,7 +37,7 @@ class ParamController extends Controller {
         $menu = (new Menu())->build();
         
         $title = 'Param | '.$id;
-        $content = $header.$menu."<h1>$id</h1>";
+        $content = $header.$menu.'<div class="main"><h1>'.$id.'</h1></div>';
 
         return include('view/template.php');
     }

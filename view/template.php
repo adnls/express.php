@@ -7,6 +7,7 @@
         <link href="/work/css/style.css" rel="stylesheet"/>
     </head>
     <body>
-         <?= $content ?>
+        <script type="text/javascript" src="/work/javascript/toggleMenu.js"></script>
+        <?= $content ?>
     </body>
 </html>

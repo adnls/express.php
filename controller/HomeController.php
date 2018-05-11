@@ -1,4 +1,5 @@
 <?php 
+
 include_once('Controller.php');
 include_once('view/components/Header.php');
 include_once('view/components/Menu.php');
@@ -26,7 +27,7 @@ class HomeController extends Controller {
         $header = (new Header($user))->build();
         $menu = (new Menu())->build();
 
-        !$user? $title = 'Home | Visitor' :  $title = 'Home | '.$user['name'];
+        !$user ? $title = 'Home | Visitor' :  $title = 'Home | '.$user['name'];
 
         $content = $header.$menu;
 

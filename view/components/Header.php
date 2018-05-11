@@ -17,13 +17,16 @@ class Header implements Component {
 
         if (!$this->user){
             return '<header>'
-                        .'<h1>Header</h1>'
+                     
+                        .'<button onclick="toggleMenu()">Toggle</button>'
+                        .'<br/>'
                         .$authButtons
                     .'</header>';  
         }
 
         return '<header>'
-                    .'<h1>Header</h1>'
+                    .'<button onclick="toggleMenu()">Toggle</button>'
+                    .'<br/>'
                     .$this->user['name']
                     .'<br/>'
                     .$this->user['email']

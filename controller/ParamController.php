@@ -4,6 +4,7 @@ include_once('Controller.php');
 include_once('view/components/Header.php');
 include_once('view/components/Menu.php');
 include_once('view/components/BreadCrumbs.php');
+include_once('view/components/Table.php');
 
 class ParamController extends Controller {
     
@@ -39,7 +40,7 @@ class ParamController extends Controller {
         //les props
         //c'est ici par exemple qu'on va aller chercher un dataset en db
         $user = $this->passport->getUser();
-
+            
         if ($param === null) $param = 'All Parameters';
 
         //les components

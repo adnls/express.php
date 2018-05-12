@@ -1,7 +1,7 @@
 <?php
 include_once('Component.php');
 
-class Menu implements Component {
+class Menu extends Component {
     public function build(){
         return '<nav>'
                 .'<h1>Menu</h1>'

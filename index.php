@@ -57,7 +57,13 @@ try {
     });
 }
 
-//TODO split Passport => Passport / Strtegy
-//TODO choisir entre template et component style
+//TODO create lib folder avec les classes Route, Router, Service
+//TODO split Passport => Passport / Strtegy / history
+//utiliser la synthaxe namespaces => refactoring
+//reflechir au choix techniques => CDN ? 
+//regarder secu => quel fichiers accessibles, comment?
+//sanitize user inputs => sql injection, xcsrf, javascript injection, http, cookie httphonly, encryption
+//login mots de passes encripter concat login mot de passe date inscription salt
+//best practices 
 
 ?>

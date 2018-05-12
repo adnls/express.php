@@ -1,5 +1,7 @@
 <?php 
+
 include_once('Controller.php');
+
 class LoginGetController extends Controller {
 
     private $router;
@@ -10,9 +12,9 @@ class LoginGetController extends Controller {
 
     public function render(){
 
-        $title = 'Login';
+        $this->title = 'Login';
     
-        $content = 
+        $this->content = 
             '<h1>Login</h1>
             <form action="/work/auth/login" method="post">
             Login: <input type="text" name="name"><br>
@@ -22,7 +24,12 @@ class LoginGetController extends Controller {
         
         $from= $this->router->getReferer();
 
-        if ($from !== "" && $from !== null && $from !== '/home') $content = "<h3>you cant access : $from</h3>".$content;
+        if ($from !== "" && $from !== null && $from !== '/home') 
+            $this->content = "<h3>you cant access : $from</h3>".$this->content;
+        
+        $this->style = '<link href="/work/static/css/style.css" rel="stylesheet"/>';
+        $this->script = null;
+        
         return include('view/template.php');
     }
 }

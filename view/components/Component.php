@@ -1,6 +1,7 @@
 <?php
-interface Component {
-    public function build();
+class Component {
+    public function build() {
+        return "<h1>Hello world</h1>";
+    }
 }
 ?>
-

@@ -31,14 +31,26 @@ class ParamController extends Controller {
         }*/
 
         //si ça fail ça redirect et ça lance pas la suite
+        
+        //les credentials
         $this->passport->authorize(); //on check si auth ok sur la session    
 
-        $header = (new Header($this->passport->getUser()))->build();
+        //les props
+        //c'est ici par exemple qu'on va aller chercher un dataset en db
+        $user = $this->passport->getUser();
+
+        //les components
+        //c'est ici qu'on va appeler le component qui render le tableau
+        $header = (new Header($user))->build();
         $menu = (new Menu())->build();
         
-        $title = 'Param | '.$id;
-        $content = $header.$menu.'<div class="main"><h1>'.$id.'</h1></div>';
+        //le templating
+        $this->title = 'Param | '.$id;
+        $this->style = '<link href="/work/static/css/style.css" rel="stylesheet"/>';
+        $this->script = '<script type="text/javascript" src="/work/static/javascript/toggleMenu.js"></script>';
+        $this->content = $header.$menu.'<div class="main"><h1>'.$id.'</h1></div>';
 
+        //le render
         return include('view/template.php');
     }
 }

@@ -3,8 +3,8 @@
 include_once('Component.php');
 include_once('view/components/AuthButtons.php');
 
-class Header implements Component {
-
+class Header extends Component {
+    
     private $user;
 
     public function __construct($user){
@@ -15,24 +15,11 @@ class Header implements Component {
 
         $authButtons = (new AuthButtons($this->user))->build();
 
-        if (!$this->user){
-            return '<header>'
-                     
-                        .'<button onclick="toggleMenu()">Toggle</button>'
-                        .'<br/>'
-                        .$authButtons
-                    .'</header>';  
-        }
-
         return '<header>'
                     .'<button onclick="toggleMenu()">Toggle</button>'
                     .'<br/>'
-                    .$this->user['name']
-                    .'<br/>'
-                    .$this->user['email']
-                    .'<br/>'
                     .$authButtons
-                .'</header>';          
+                .'</header>';  
+        }    
     }
-}
 ?>

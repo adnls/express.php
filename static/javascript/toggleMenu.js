@@ -3,7 +3,7 @@
 function toggleMenu() {
 
     var nav = document.querySelector("nav");
-    var main = document.querySelector(".main");
+    var main = document.querySelector(".Main");
     
     if (nav.style.width === "0px"){
         nav.style.width = "250px";
@@ -11,6 +11,5 @@ function toggleMenu() {
     } else {
         nav.style.width = "0px";
         main.style.marginLeft = "0px";
-        
     }
 }

@@ -3,6 +3,7 @@
 include_once('Controller.php');
 include_once('view/components/Header.php');
 include_once('view/components/Menu.php');
+include_once('view/components/BreadCrumbs.php');
 
 class ParamController extends Controller {
     
@@ -43,12 +44,13 @@ class ParamController extends Controller {
         //c'est ici qu'on va appeler le component qui render le tableau
         $header = (new Header($user))->build();
         $menu = (new Menu())->build();
+        $breadCrumbs = (new BreadCrumbs())->build();
         
         //le templating
         $this->title = 'Param | '.$id;
         $this->style = '<link href="/work/static/css/style.css" rel="stylesheet"/>';
         $this->script = '<script type="text/javascript" src="/work/static/javascript/toggleMenu.js"></script>';
-        $this->content = $header.$menu.'<div class="main"><h1>'.$id.'</h1></div>';
+        $this->content = $header.$menu.'<div class="Main">'.$breadCrumbs.'<h1>'.$id.'</h1></div>';
 
         //le render
         return include('view/template.php');

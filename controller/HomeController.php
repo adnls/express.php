@@ -3,7 +3,7 @@
 include_once('Controller.php');
 include_once('view/components/Header.php');
 include_once('view/components/Menu.php');
-
+include_once('view/components/BreadCrumbs.php');
 //class Home extends Controller implements Auth, Db, Session, Router 
 class HomeController extends Controller {
 
@@ -27,11 +27,15 @@ class HomeController extends Controller {
 
         $header = (new Header($user))->build();
         $menu = (new Menu())->build();
+        $breadCrumbs = (new BreadCrumbs())->build();
+        $main = '<div class="Main">'.$breadCrumbs.'</div>';
 
         !$user ? $this->title = 'Home | Visitor' :  $this->title = 'Home | '.$user['name'];
         $this->style = '<link href="/work/static/css/style.css" rel="stylesheet"/>';
         $this->script = '<script type="text/javascript" src="/work/static/javascript/toggleMenu.js"></script>';
-        $this->content = $header.$menu;
+        $this->content = $header
+                        .$menu
+                        .$main;
 
         return include('view/template.php');
     }

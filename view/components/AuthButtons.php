@@ -12,15 +12,18 @@ class AuthButtons extends Component {
     public function build(){
         
         if (!$this->user) {
-            $content = '<a href="/work/auth/login"><button>Login</button></a><br/>';
+            $content = '<a href="/work/auth/login">
+                        <button>Login</button>
+                        </a>
+                        <br/>';
         } else {
             $content = $this->user['name']
-                .'<br/>'
-                .$this->user['email']
-                .'<br/>'
-                .'<form action="/work/auth/logout" method="post">
-                <input type="submit" value="Logout">
-                </form>';
+                        .'<br/>'
+                        .$this->user['email']
+                        .'<br/>'
+                        .'<form action="/work/auth/logout" method="post">
+                        <input type="submit" value="Logout">
+                        </form>';
         }    
         return $content;
     }

@@ -7,7 +7,7 @@ class Menu extends Component {
                 .'<h1>Menu</h1>'
                 .'<a href="/work/home">Home</a>'
                 .'<br/>'
-                .'<a href="/work/param/random">Param</a>'
+                .'<a href="/work/param">Param</a>'
                 .'</nav>';
     }
 }

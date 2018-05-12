@@ -65,7 +65,7 @@ class Router {
         }
 
         public function getReferer(){
-
+            //refactor avec regex
             //var_dump($_SESSION["router_history"][count($_SESSION["router_history"])-1]);
             for ($i = count($_SESSION["router_history"])-1; $i>=0; $i--){
                 if ($_SESSION["router_history"][$i] !== '/auth/login' && $_SESSION["router_history"][$i] !== '/auth/logout')

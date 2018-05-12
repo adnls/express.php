@@ -13,7 +13,7 @@ class ParamController extends Controller {
         $this->passport = $passport;
     }
 
-    public function render($id = null){
+    public function render($param = null){
 
         //si c'est une route sans argument c'est à dire sans :id
         //mais avec ?id=truc
@@ -40,6 +40,8 @@ class ParamController extends Controller {
         //c'est ici par exemple qu'on va aller chercher un dataset en db
         $user = $this->passport->getUser();
 
+        if ($param === null) $param = 'All Parameters';
+
         //les components
         //c'est ici qu'on va appeler le component qui render le tableau
         $header = (new Header($user))->build();
@@ -47,10 +49,10 @@ class ParamController extends Controller {
         $breadCrumbs = (new BreadCrumbs())->build();
         
         //le templating
-        $this->title = 'Param | '.$id;
+        $this->title = 'Param | '.$param;
         $this->style = '<link href="/work/static/css/style.css" rel="stylesheet"/>';
         $this->script = '<script type="text/javascript" src="/work/static/javascript/toggleMenu.js"></script>';
-        $this->content = $header.$menu.'<div class="Main">'.$breadCrumbs.'<h1>'.$id.'</h1></div>';
+        $this->content = $header.$menu.'<div class="Main">'.$breadCrumbs.'<h2>'.$param.'</h2></div>';
 
         //le render
         return include('view/template.php');

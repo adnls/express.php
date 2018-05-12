@@ -23,13 +23,22 @@ class HomeController extends Controller {
                 
         //renvoie false si pas d'user donc en peut l'envoyer direct en param
         //la logique est aussi dans les components
-        $user = $this->passport->getUser();
 
+        //les props
+        $user = $this->passport->getUser();
+        //if not user => definir  
+
+        //les components
         $header = (new Header($user))->build();
         $menu = (new Menu())->build();
         $breadCrumbs = (new BreadCrumbs())->build();
-        $main = '<div class="Main">'.$breadCrumbs.'</div>';
+        //new card avec title info1 info2
+        $main = '<div class="Main">'
+                .$breadCrumbs
+                //card
+                .'</div>';
 
+        //le templating
         !$user ? $this->title = 'Home | Visitor' :  $this->title = 'Home | '.$user['name'];
         $this->style = '<link href="/work/static/css/style.css" rel="stylesheet"/>';
         $this->script = '<script type="text/javascript" src="/work/static/javascript/toggleMenu.js"></script>';
@@ -37,6 +46,7 @@ class HomeController extends Controller {
                         .$menu
                         .$main;
 
+        //le render final => voir dans le template
         return include('view/template.php');
     }
 }

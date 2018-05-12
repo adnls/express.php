@@ -1,3 +1,3 @@
 #!/bin/bash
-
-git add . && git commit -m "git.sh" && git push origin master
+MESSAGE="$1"
+git add . && git commit -m $MESSAGE && git push origin master

@@ -13,7 +13,8 @@ class LoginGetController extends Controller {
     public function render(){
 
         $this->title = 'Login';
-    
+        
+        //créer un component 
         $this->content = 
             '<h1>Login</h1>
             <form action="/work/auth/login" method="post">

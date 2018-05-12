@@ -10,18 +10,15 @@ require('controller/LoginPostController.php');
 require('controller/LogoutController.php');
 
 $router->get('/auth/login', function() use($router){
-    $controller = new LoginGetController($router);    
-    $controller->render();
+    (new LoginGetController($router))->render();
 });
 
 $router->post('/auth/login', function() use($passport) {
-    $controller = new LoginPostController($passport);    
-    $controller->render();
+    (new LoginPostController($passport))->render();
 });
 
 $router->post('/auth/logout', function() use($passport) {
-    $controller = new LogoutController($passport);    
-    $controller->render();
+    (new LogoutController($passport))->render();
 });
 
 

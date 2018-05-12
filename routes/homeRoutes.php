@@ -10,7 +10,7 @@ $router->get('/', function() use($router) {
 
 /*protected!!*/
 $router->get('/home', function() use($db, $passport) {
-    $controller = new HomeController($db, $passport);    
-    $controller->render();
+    (new HomeController($db, $passport))->render();
 });
+
 ?>

@@ -6,13 +6,11 @@
 require('controller/ParamController.php');
 
 $router->get('/param', function() use ($passport) {
-    $controller = new ParamController($passport);    
-    $controller->render();
+    (new ParamController($passport))->render();
 });
 
 $router->get('/param/:id', function($id) use ($passport) {
-    $controller = new ParamController($passport);    
-    $controller->render($id);
+    (new ParamController($passport))->render($id);
 });
 
 ?>

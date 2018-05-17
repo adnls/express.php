@@ -1,0 +1,27 @@
+header{
+    background-color: LightSlateGrey ;
+}
+
+nav {
+    background-color: Silver;
+}
+
+/*classe temp à modifier.*/
+.casetab a {
+    text-decoration: none;
+    color : grey;
+}
+
+article {
+    display : inline-block;
+    background-color: grey;
+}
+
+footer {
+    background-color: LightSlateGrey ;
+}
+
+/*debug : classe temporaire pour faciliter dev*/
+.debug {
+    background-color: red;
+}

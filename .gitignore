@@ -1,0 +1,6 @@
+# Contient le cahier des charges et le fichier de données excel (avec de vrais données!)
+documents/*
+
+# Contient les ids / login / nom de bdd / etc
+.env
+deployer_dev.sh
